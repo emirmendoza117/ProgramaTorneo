@@ -15,7 +15,7 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
     private Color preback, premenu;
     public static String[][] Datos = new String[10][9];
     private String Sadminname = Login.Sadmin;
-    private int numregistro = 0;
+    private int numregistro = 0, numintegrantes, numPreciobase, numDescuento, numTotal;
     private Info vinfo;
 
     public Principal() {
@@ -110,26 +110,26 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
         fieldNombreEquipo = new JTextField("");
         fieldNombreEquipo.setFont(new Font("Andale Mono", 1, 14));
         fieldNombreEquipo.setForeground(new Color(0, 0, 0));
-        fieldNombreEquipo.setBounds(20, 200, 200, 30);
+        fieldNombreEquipo.setBounds(30, 200, 200, 30);
         add(fieldNombreEquipo);
 
         fieldNombreCapitan = new JTextField("");
         fieldNombreCapitan.setFont(new Font("Andale Mono", 1, 14));
         fieldNombreCapitan.setForeground(new Color(0, 0, 0));
-        fieldNombreCapitan.setBounds(20, 280, 200, 30);
+        fieldNombreCapitan.setBounds(30, 280, 200, 30);
         add(fieldNombreCapitan);
 
         fieldCorreoCapitan = new JTextField("");
         fieldCorreoCapitan.setFont(new Font("Andale Mono", 1, 14));
         fieldCorreoCapitan.setForeground(new Color(0, 0, 0));
-        fieldCorreoCapitan.setBounds(20, 360, 200, 30);
+        fieldCorreoCapitan.setBounds(30, 360, 200, 30);
         add(fieldCorreoCapitan);
 
         comboVideojuego = new JComboBox();
         comboVideojuego.setFont(new Font("Andale Mono", 1, 14));
         comboVideojuego.setForeground(new Color(0, 0, 0));
         comboVideojuego.setEditable(false);
-        comboVideojuego.setBounds(20, 440, 200, 30);
+        comboVideojuego.setBounds(30, 440, 200, 30);
         comboVideojuego.addItem("");
         comboVideojuego.addItem("Minecraft");
         comboVideojuego.addItem("Valorant");
@@ -142,7 +142,7 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
         comboPlataformaDisponible.setFont(new Font("Andale Mono", 1, 14));
         comboPlataformaDisponible.setForeground(new Color(0, 0, 0));
         comboPlataformaDisponible.setEditable(false);
-        comboPlataformaDisponible.setBounds(20, 520, 200, 30);
+        comboPlataformaDisponible.setBounds(30, 520, 200, 30);
         comboPlataformaDisponible.addItem("");
         comboPlataformaDisponible.addItem("PC");
         comboPlataformaDisponible.addItem("Xbox");
@@ -155,7 +155,7 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
         comboIntegrantes.setFont(new Font("Andale Mono", 0, 12));
         comboIntegrantes.setForeground(new Color(0, 0, 0));
         comboIntegrantes.setEditable(false);
-        comboIntegrantes.setBounds(20, 600, 200, 30);
+        comboIntegrantes.setBounds(30, 600, 200, 30);
         comboIntegrantes.addItem("");
         for (int i = 1; i <= 10; i++) {
             comboIntegrantes.addItem(String.valueOf(i));
@@ -167,44 +167,44 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
         btregistro.setFont(new Font("Andale Mono", 1, 16));
         btregistro.setForeground(new Color(255, 255, 255));
         btregistro.setBackground(new Color(0, 128, 0));
-        btregistro.setBounds(520, 200, 150, 30);
+        btregistro.setBounds(400, 600, 150, 30);
         btregistro.addActionListener(this);
         add(btregistro);
 
         lbEquipo = new JLabel("Nombre del Equipo:");
         lbEquipo.setFont(new Font("Andale Mono", 1, 14));
         lbEquipo.setForeground(new Color(0, 0, 0));
-        lbEquipo.setBounds(20, 170, 150, 30);
+        lbEquipo.setBounds(30, 170, 150, 30);
         add(lbEquipo);
 
         lbCapitan = new JLabel("Nombre del Capitán:");
         lbCapitan.setFont(new Font("Andale Mono", 1, 14));
         lbCapitan.setForeground(new Color(0, 0, 0));
-        lbCapitan.setBounds(20, 250, 150, 30);
+        lbCapitan.setBounds(30, 250, 150, 30);
         add(lbCapitan);
 
         lbCorreo = new JLabel("Correo del Capitán");
         lbCorreo.setFont(new Font("Andale Mono", 1, 14));
         lbCorreo.setForeground(new Color(0, 0, 0));
-        lbCorreo.setBounds(20, 330, 150, 30);
+        lbCorreo.setBounds(30, 330, 150, 30);
         add(lbCorreo);
 
         lbJuego = new JLabel("Videojuego:");
         lbJuego.setFont(new Font("Andale Mono", 1, 14));
         lbJuego.setForeground(new Color(0, 0, 0));
-        lbJuego.setBounds(20, 410, 150, 30);
+        lbJuego.setBounds(30, 410, 150, 30);
         add(lbJuego);
 
         lbPlataforma = new JLabel("Plataforma de juego:");
         lbPlataforma.setFont(new Font("Andale Mono", 1, 14));
         lbPlataforma.setForeground(new Color(0, 0, 0));
-        lbPlataforma.setBounds(20, 490, 150, 30);
+        lbPlataforma.setBounds(30, 490, 150, 30);
         add(lbPlataforma);
 
         lbIntegrantes = new JLabel("Cantidad de integrantes:");
         lbIntegrantes.setFont(new Font("Andale Mono", 1, 14));
         lbIntegrantes.setForeground(new Color(0, 0, 0));
-        lbIntegrantes.setBounds(20, 570, 180, 30);
+        lbIntegrantes.setBounds(30, 570, 180, 30);
         add(lbIntegrantes);
 
         lbtitle = new JLabel("Bienvenido");
@@ -222,7 +222,7 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
         lbNumRegistro = new JLabel("Numero de registro: " + (numregistro + 1));
         lbNumRegistro.setFont(new Font("Andale Mono", 1, 14));
         lbNumRegistro.setForeground(new Color(0, 0, 0));
-        lbNumRegistro.setBounds(20, 650, 200, 30);
+        lbNumRegistro.setBounds(10, 650, 200, 30);
         add(lbNumRegistro);
 
         ImageIcon imageGetIcon = new ImageIcon("images/control.png");
@@ -233,7 +233,7 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
         add(lblogo);
 
         lbicon = new JLabel();
-        lbicon.setBounds(290, 270, 360, 360);
+        lbicon.setBounds(290, 200, 360, 360);
         add(lbicon);
     }
 
@@ -252,6 +252,7 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
                     aVideojuego = comboVideojuego.getSelectedItem().toString();
                     aPlataforma = comboPlataformaDisponible.getSelectedItem().toString();
                     aIntegrantes = comboIntegrantes.getSelectedItem().toString();
+                    numintegrantes = Integer.parseInt(comboIntegrantes.getSelectedItem().toString());
 
                     Datos[numregistro][0] = aNombrEquipo;
                     Datos[numregistro][1] = aNombreCapitan;
@@ -259,14 +260,25 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
                     Datos[numregistro][3] = aVideojuego;
                     Datos[numregistro][4] = aPlataforma;
                     Datos[numregistro][5] = aIntegrantes;
-                    Datos[numregistro][6] = aTipoInscripcion;
 
-                    if (aTipoInscripcion.equals("Individual")) {
-                      Datos[numregistro][7] = "100";
-                    } else if (aTipoInscripcion.equals("Equipo")){
-                      Datos[numregistro][7] = "350";
-                    } else if (aTipoInscripcion.equals("Profesional")){
-                      Datos[numregistro][7] = "800";                        
+                    if(numintegrantes==0){
+                        Datos[numregistro][6]="Individual";
+                    } else if (numintegrantes >= 2 && numintegrantes <= 5) {
+                        Datos[numregistro][6]="Equipo";
+                    } else if (numintegrantes >5 && numintegrantes <=10){
+                        Datos[numregistro][6]="Profesional";
+                    } else {
+
+                    }
+
+                    Datos[numregistro][6] = aTipoInscripcion;
+                    
+                    if (Datos[numregistro][6].equals("Individual")) {
+                        Datos[numregistro][7] = "100";
+                    } else if (Datos[numregistro][6].equals("Equipo")){
+                        Datos[numregistro][7] = "350";
+                    } else if (Datos[numregistro][6].equals("Profesional")){
+                        Datos[numregistro][7] = "800";                        
                     }
 
                     numregistro++;
@@ -365,6 +377,33 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
             lbadmin.setForeground(new Color(0, 0, 0));
             lbNumRegistro.setForeground(new Color(0, 0, 0));
         }
+
+        if (e.getSource()==menuItemAcerca) {
+            JOptionPane.showMessageDialog(null, "Programa creador por: Emir Mendoza"+
+                                        "\n Cuenta de X: ShadeeDX");
+        }
+
+        if (e.getSource()==menuItemNuevo){
+            fieldNombreEquipo.setText("");
+            fieldNombreCapitan.setText("");
+            fieldCorreoCapitan.setText("");
+            comboVideojuego.setSelectedIndex(0);
+            comboPlataformaDisponible.setSelectedIndex(0);
+            comboIntegrantes.setSelectedIndex(0);
+
+            if (vinfo!=null && vinfo.isDisplayable()) {
+                vinfo.dispose();
+            }
+
+            for (int i = 0; i < Datos.length; i++){
+                for (int j = 0; j < Datos[i].length; j++){
+                    Datos[i][j]="";
+                }
+            }
+
+            numregistro = 0;
+
+        }
     }
 
     public void itemStateChanged(ItemEvent e) {
@@ -404,6 +443,8 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
                 gameimageset.setImage(new ImageIcon(gameimagescaled).getImage());
                 lbicon.setIcon(gameimageset);
             }
+        } else {
+            lbicon.setIcon(null);
         }
     }
 

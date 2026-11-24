@@ -8,8 +8,8 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
     private JMenu menuOpciones, menuTema, menuRegistro, menuAcerca;
     private JMenuItem menuItemRegistros, menuItemVerde, menuItemAzul, menuItemBlanco, menuItemColorPre, menuItemSalir, menuItemCerrarSesion, menuItemNuevo, menuItemAcerca;
     private JTextField fieldNombreEquipo, fieldNombreCapitan, fieldCorreoCapitan;
-    private JComboBox<String> comboVideojuego, comboPlataformaDisponible, comboTipodeInscripcion, comboIntegrantes;
-    private JLabel lbEquipo, lbCapitan, lbCorreo, lbJuego, lbPlataforma, lbIntegrantes, lbInscripcion, lbtitle, lblogo, lbicon, lbadmin, lbNumRegistro;
+    private JComboBox<String> comboVideojuego, comboPlataformaDisponible, comboIntegrantes;
+    private JLabel lbEquipo, lbCapitan, lbCorreo, lbJuego, lbPlataforma, lbIntegrantes, lbtitle, lblogo, lbicon, lbadmin, lbNumRegistro;
     private String aNombrEquipo, aNombreCapitan, aCorreoCapitan, aVideojuego, aPlataforma, aIntegrantes, aTipoInscripcion;
     private JButton btregistro;
     private Color preback, premenu;
@@ -163,17 +163,6 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
         comboIntegrantes.addItemListener(this);
         add(comboIntegrantes);
 
-        comboTipodeInscripcion = new JComboBox();
-        comboTipodeInscripcion.setFont(new Font("Andale Mono", 1, 14));
-        comboTipodeInscripcion.setForeground(new Color(0, 0, 0));
-        comboTipodeInscripcion.setBounds(270, 200, 200, 30);
-        comboTipodeInscripcion.addItem("");
-        comboTipodeInscripcion.addItem("Individual");
-        comboTipodeInscripcion.addItem("Equipo");
-        comboTipodeInscripcion.addItem("Profesional");
-        comboTipodeInscripcion.addItemListener(this);
-        add(comboTipodeInscripcion);
-
         btregistro = new JButton("Registrar");
         btregistro.setFont(new Font("Andale Mono", 1, 16));
         btregistro.setForeground(new Color(255, 255, 255));
@@ -186,7 +175,6 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
         lbEquipo.setFont(new Font("Andale Mono", 1, 14));
         lbEquipo.setForeground(new Color(0, 0, 0));
         lbEquipo.setBounds(20, 170, 150, 30);
-        ;
         add(lbEquipo);
 
         lbCapitan = new JLabel("Nombre del Capitán:");
@@ -218,12 +206,6 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
         lbIntegrantes.setForeground(new Color(0, 0, 0));
         lbIntegrantes.setBounds(20, 570, 180, 30);
         add(lbIntegrantes);
-
-        lbInscripcion = new JLabel("Tipo de inscripcion:");
-        lbInscripcion.setFont(new Font("Andale Mono", 1, 14));
-        lbInscripcion.setForeground(new Color(0, 0, 0));
-        lbInscripcion.setBounds(270, 170, 150, 30);
-        add(lbInscripcion);
 
         lbtitle = new JLabel("Bienvenido");
         lbtitle.setFont(new Font("Andale Mono", 1, 64));
@@ -258,7 +240,7 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == btregistro) {
-            if (fieldNombreEquipo.getText().isBlank() || fieldNombreCapitan.getText().isBlank() || fieldCorreoCapitan.getText().isBlank() || comboVideojuego.getSelectedItem().equals("") || comboPlataformaDisponible.getSelectedItem().equals("") || comboIntegrantes.getSelectedItem().equals("") || comboTipodeInscripcion.getSelectedItem().equals("")) {
+            if (fieldNombreEquipo.getText().isBlank() || fieldNombreCapitan.getText().isBlank() || fieldCorreoCapitan.getText().isBlank() || comboVideojuego.getSelectedItem().equals("") || comboPlataformaDisponible.getSelectedItem().equals("") || comboIntegrantes.getSelectedItem().equals("")) {
                 JOptionPane.showMessageDialog(null, "Rellene correctamente los campos");
             } else {
 
@@ -270,7 +252,6 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
                     aVideojuego = comboVideojuego.getSelectedItem().toString();
                     aPlataforma = comboPlataformaDisponible.getSelectedItem().toString();
                     aIntegrantes = comboIntegrantes.getSelectedItem().toString();
-                    aTipoInscripcion = comboTipodeInscripcion.getSelectedItem().toString();
 
                     Datos[numregistro][0] = aNombrEquipo;
                     Datos[numregistro][1] = aNombreCapitan;
@@ -326,7 +307,6 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
             lbJuego.setForeground(new Color(0, 0, 0));
             lbPlataforma.setForeground(new Color(0, 0, 0));
             lbIntegrantes.setForeground(new Color(0, 0, 0));
-            lbInscripcion.setForeground(new Color(0, 0, 0));
             lbtitle.setForeground(new Color(0, 0, 0));
             lbadmin.setForeground(new Color(0, 0, 0));
             lbNumRegistro.setForeground(new Color(0, 0, 0));
@@ -345,7 +325,6 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
             lbJuego.setForeground(new Color(255, 255, 255));
             lbPlataforma.setForeground(new Color(255, 255, 255));
             lbIntegrantes.setForeground(new Color(255, 255, 255));
-            lbInscripcion.setForeground(new Color(255, 255, 255));
             lbtitle.setForeground(new Color(255, 255, 255));
             lbadmin.setForeground(new Color(255, 255, 255));
             lbNumRegistro.setForeground(new Color(255, 255, 255));
@@ -364,7 +343,6 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
             lbJuego.setForeground(new Color(255, 255, 255));
             lbPlataforma.setForeground(new Color(255, 255, 255));
             lbIntegrantes.setForeground(new Color(255, 255, 255));
-            lbInscripcion.setForeground(new Color(255, 255, 255));
             lbtitle.setForeground(new Color(255, 255, 255));
             lbadmin.setForeground(new Color(255, 255, 255));
             lbNumRegistro.setForeground(new Color(255, 255, 255));
@@ -383,7 +361,6 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
             lbJuego.setForeground(new Color(0, 0, 0));
             lbPlataforma.setForeground(new Color(0, 0, 0));
             lbIntegrantes.setForeground(new Color(0, 0, 0));
-            lbInscripcion.setForeground(new Color(0, 0, 0));
             lbtitle.setForeground(new Color(0, 0, 0));
             lbadmin.setForeground(new Color(0, 0, 0));
             lbNumRegistro.setForeground(new Color(0, 0, 0));

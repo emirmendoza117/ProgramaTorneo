@@ -436,8 +436,8 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
         }
 
         if (e.getSource() == menuItemAcerca) {
-            JOptionPane.showMessageDialog(null, "ShadeeDX" +
-                    "\n Cuenta de X: @shadeeDX");
+            JOptionPane.showMessageDialog(null, "Emir Mendoza" +
+                    "\n Correo: emirfernando29@gmail.com");
         }
 
         if (e.getSource() == menuItemNuevo) {

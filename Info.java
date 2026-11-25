@@ -34,7 +34,8 @@ public class Info extends JFrame implements ItemListener {
                 "\n Plataforma: " +
                 "\n Integrantes: " +
                 "\n Tipo: " +
-                "\n\n Precio base: $350" +
+                "\n\n Precio base:" +
+                "\n Precio de Integrantes:"+
                 "\n Descuento:" +
                 "\n Total:" +
                 "\n\n Estado:");
@@ -62,8 +63,9 @@ public class Info extends JFrame implements ItemListener {
 
     public void itemStateChanged(ItemEvent e) {
         String Snumber = cb.getSelectedItem().toString();
+        int number = Integer.parseInt(Snumber) - 1;
 
-        if (Snumber.equals("")) {
+        if (Snumber.equals("") || Principal.Datos[number][0].equals("") || Principal.Datos[number][0].isEmpty()) {
             textarea1.setText(" Equipo: " +
                     "\n Capitán: " +
                     "\n Correo: " +
@@ -71,23 +73,24 @@ public class Info extends JFrame implements ItemListener {
                     "\n Plataforma: " +
                     "\n Integrantes: " +
                     "\n Tipo: " +
-                    "\n\n Precio base: $350" +
+                    "\n\n Precio base:" +
+                    "\n Precio de Integrantes:"+
                     "\n Descuento:" +
                     "\n Total:" +
                     "\n\n Estado:");
         } else {
-            int number = Integer.parseInt(Snumber) - 1;
-            textarea1.setText(" Nombre del equipo: " + Principal.Datos[number][0] +
+            textarea1.setText(" Equipo: " + Principal.Datos[number][0] +
                     "\n Capitán: " + Principal.Datos[number][1] +
                     "\n Correo: " + Principal.Datos[number][2] +
                     "\n Videojuego: " + Principal.Datos[number][3] +
                     "\n Plataforma: " + Principal.Datos[number][4] +
                     "\n Integrantes: " + Principal.Datos[number][5] +
                     "\n Tipo: " + Principal.Datos[number][6] +
-                    "\n\n Precio base: $350" +
-                    "\n Descuento:" +
-                    "\n Total:" +
-                    "\n\n Estado:");
+                    "\n\n Precio base: $"+ Principal.Datos[number][7]+
+                    "\n Precio de Integrantes: $"+ Principal.Datos[number][8]+
+                    "\n Descuento: $" + Principal.Datos[number][9]+
+                    "\n Total: $" + Principal.Datos[number][10]+
+                    "\n\n Estado: " + Principal.Datos[number][11]);
 
         }
     }

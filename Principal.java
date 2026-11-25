@@ -6,16 +6,19 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
 
     private JMenuBar mb;
     private JMenu menuOpciones, menuTema, menuRegistro, menuAcerca;
-    private JMenuItem menuItemRegistros, menuItemVerde, menuItemAzul, menuItemBlanco, menuItemColorPre, menuItemSalir, menuItemCerrarSesion, menuItemNuevo, menuItemAcerca;
+    private JMenuItem menuItemRegistros, menuItemVerde, menuItemAzul, menuItemBlanco, menuItemColorPre, menuItemSalir,
+            menuItemCerrarSesion, menuItemNuevo, menuItemAcerca, menuItemReiniciar;
     private JTextField fieldNombreEquipo, fieldNombreCapitan, fieldCorreoCapitan;
     private JComboBox<String> comboVideojuego, comboPlataformaDisponible, comboIntegrantes;
-    private JLabel lbEquipo, lbCapitan, lbCorreo, lbJuego, lbPlataforma, lbIntegrantes, lbtitle, lblogo, lbicon, lbadmin, lbNumRegistro;
-    private String aNombrEquipo, aNombreCapitan, aCorreoCapitan, aVideojuego, aPlataforma, aIntegrantes, aTipoInscripcion;
+    private JLabel lbEquipo, lbCapitan, lbCorreo, lbJuego, lbPlataforma, lbIntegrantes, lbtitle, lblogo, lbicon,
+            lbadmin, lbNumRegistro;
+    private String aNombrEquipo, aNombreCapitan, aCorreoCapitan, aVideojuego, aPlataforma, aIntegrantes;
     private JButton btregistro;
     private Color preback, premenu;
-    public static String[][] Datos = new String[10][9];
+    public static String[][] Datos = new String[10][12];
     private String Sadminname = Login.Sadmin;
-    private int numregistro = 0, numintegrantes, numPreciobase, numDescuento, numTotal;
+    private int numregistro = 0, numintegrantes = 0, numPreciobase = 0, numDescuento = 0, numTotal = 0,
+            numPrecioIntegrantes = 0;
     private Info vinfo;
 
     public Principal() {
@@ -25,6 +28,7 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
         setTitle("Registros");
         preback = getContentPane().getBackground();
 
+        iniciarBaseDatos();
 
         // Menu de Barras configuración
         mb = new JMenuBar();
@@ -56,6 +60,12 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
         menuItemNuevo.setForeground(new Color(0, 0, 0));
         menuItemNuevo.addActionListener(this);
         menuOpciones.add(menuItemNuevo);
+
+        menuItemReiniciar = new JMenuItem("Reiniciar");
+        menuItemReiniciar.setFont(new Font("Andale Mono", 0, 12));
+        menuItemReiniciar.setForeground(new Color(0, 0, 0));
+        menuItemReiniciar.addActionListener(this);
+        menuOpciones.add(menuItemReiniciar);
 
         menuItemCerrarSesion = new JMenuItem("Cerrar Sesion");
         menuItemCerrarSesion.setFont(new Font("Andale Mono", 0, 12));
@@ -240,7 +250,10 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == btregistro) {
-            if (fieldNombreEquipo.getText().isBlank() || fieldNombreCapitan.getText().isBlank() || fieldCorreoCapitan.getText().isBlank() || comboVideojuego.getSelectedItem().equals("") || comboPlataformaDisponible.getSelectedItem().equals("") || comboIntegrantes.getSelectedItem().equals("")) {
+            if (fieldNombreEquipo.getText().isBlank() || fieldNombreCapitan.getText().isBlank()
+                    || fieldCorreoCapitan.getText().isBlank() || comboVideojuego.getSelectedItem().equals("")
+                    || comboPlataformaDisponible.getSelectedItem().equals("")
+                    || comboIntegrantes.getSelectedItem().equals("")) {
                 JOptionPane.showMessageDialog(null, "Rellene correctamente los campos");
             } else {
 
@@ -261,27 +274,60 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
                     Datos[numregistro][4] = aPlataforma;
                     Datos[numregistro][5] = aIntegrantes;
 
-                    if(numintegrantes==0){
-                        Datos[numregistro][6]="Individual";
-                    } else if (numintegrantes >= 2 && numintegrantes <= 5) {
-                        Datos[numregistro][6]="Equipo";
-                    } else if (numintegrantes >5 && numintegrantes <=10){
-                        Datos[numregistro][6]="Profesional";
-                    } else {
+                    /// Asignar tipo de equipo y el precio por integrante
 
+                    if (numintegrantes == 1) {
+                        Datos[numregistro][6] = "Individual";
+                    } else if (numintegrantes >= 2 && numintegrantes <= 5) {
+                        Datos[numregistro][6] = "Equipo";
+                        numPrecioIntegrantes = (numintegrantes - 1) * 50;
+                    } else if (numintegrantes > 5 && numintegrantes <= 10) {
+                        Datos[numregistro][6] = "Profesional";
+                        numPrecioIntegrantes = (numintegrantes - 5) * 75;
                     }
 
-                    Datos[numregistro][6] = aTipoInscripcion;
-                    
+                    // Asignar precio total sin descuento
+
                     if (Datos[numregistro][6].equals("Individual")) {
                         Datos[numregistro][7] = "100";
-                    } else if (Datos[numregistro][6].equals("Equipo")){
+                        numPreciobase = 100;
+                        numTotal = numPreciobase + numPrecioIntegrantes;
+                    } else if (Datos[numregistro][6].equals("Equipo")) {
                         Datos[numregistro][7] = "350";
-                    } else if (Datos[numregistro][6].equals("Profesional")){
-                        Datos[numregistro][7] = "800";                        
+                        numPreciobase = 350;
+                        numTotal = numPreciobase + numPrecioIntegrantes;
+                    } else if (Datos[numregistro][6].equals("Profesional")) {
+                        Datos[numregistro][7] = "800";
+                        numPreciobase = 800;
+                        numTotal = numPreciobase + numPrecioIntegrantes;
                     }
 
+                    // Asignar descuentos
+
+                    if (numintegrantes > 5) {
+                        numDescuento = (numTotal * 10) / 100;
+                    }
+
+                    if (aVideojuego.equals("Minecraft")) {
+                        numDescuento += 50;
+                    }
+
+                    if (numDescuento != 0) {
+                        Datos[numregistro][9] = String.valueOf(numDescuento);
+                    } else {
+                        Datos[numregistro][9] = "Sin Descuento";
+                    }
+
+                    Datos[numregistro][10] = String.valueOf(numTotal - numDescuento);
+                    Datos[numregistro][11] = "Pendiente de pago";
+                    Datos[numregistro][8] = String.valueOf(numPrecioIntegrantes);
+
                     numregistro++;
+                    numintegrantes = 0;
+                    numPreciobase = 0;
+                    numDescuento = 0;
+                    numTotal = 0;
+                    numPrecioIntegrantes = 0;
 
                     if (numregistro < Datos.length) {
                         lbNumRegistro.setText("Numero de registro: " + (numregistro + 1));
@@ -289,11 +335,14 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
                         lbNumRegistro.setText("Numero de registro: 10");
                         JOptionPane.showMessageDialog(null, "Numero de registro lleno");
                     }
+
                 }
             }
         }
 
-        if (e.getSource() == menuItemRegistros) {
+        if (e.getSource() == menuItemRegistros)
+
+        {
 
             if (vinfo != null && vinfo.isDisplayable()) {
                 vinfo.setVisible(true);
@@ -378,31 +427,57 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
             lbNumRegistro.setForeground(new Color(0, 0, 0));
         }
 
-        if (e.getSource()==menuItemAcerca) {
-            JOptionPane.showMessageDialog(null, "Programa creador por: Emir Mendoza"+
-                                        "\n Cuenta de X: ShadeeDX");
+        if (e.getSource() == menuItemAcerca) {
+            JOptionPane.showMessageDialog(null, "Programa creador por: Emir Mendoza" +
+                    "\n Cuenta de X: ShadeeDX");
         }
 
-        if (e.getSource()==menuItemNuevo){
+        if (e.getSource() == menuItemNuevo) {
             fieldNombreEquipo.setText("");
             fieldNombreCapitan.setText("");
             fieldCorreoCapitan.setText("");
             comboVideojuego.setSelectedIndex(0);
             comboPlataformaDisponible.setSelectedIndex(0);
             comboIntegrantes.setSelectedIndex(0);
+        }
 
-            if (vinfo!=null && vinfo.isDisplayable()) {
+        if (e.getSource() == menuItemReiniciar) {
+            fieldNombreEquipo.setText("");
+            fieldNombreCapitan.setText("");
+            fieldCorreoCapitan.setText("");
+            comboVideojuego.setSelectedIndex(0);
+            comboPlataformaDisponible.setSelectedIndex(0);
+            comboIntegrantes.setSelectedIndex(0);
+            iniciarBaseDatos();
+
+            if (vinfo != null && vinfo.isDisplayable()) {
                 vinfo.dispose();
             }
+        }
 
-            for (int i = 0; i < Datos.length; i++){
-                for (int j = 0; j < Datos[i].length; j++){
-                    Datos[i][j]="";
-                }
+        if (e.getSource()==menuItemCerrarSesion) {
+            Login ventanaInicio = new Login();
+            ventanaInicio.setBounds(0,0,650,600);
+            ventanaInicio.setResizable(false);
+            ventanaInicio.setLocationRelativeTo(null);
+            ventanaInicio.setVisible(true);
+
+            if (vinfo != null && vinfo.isDisplayable()) {
+                vinfo.dispose();
             }
+            dispose();
+        }
 
-            numregistro = 0;
+        if (e.getSource()==menuItemSalir) {
+            System.exit(0);
+        }
+    }
 
+    public void iniciarBaseDatos(){
+        for (int i = 0; i<Datos.length;i++){
+            for (int j = 0;j<Datos[i].length;j++){
+                Datos[i][j] = "";
+            }
         }
     }
 
@@ -413,7 +488,6 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
         ImageIcon gameimageget = new ImageIcon();
         Image gameimagescaled;
         ImageIcon gameimageset = new ImageIcon();
-
 
         if (!ijuego.equals("")) {
             if (ijuego.equals("Minecraft")) {

@@ -15,7 +15,7 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
     private String aNombrEquipo, aNombreCapitan, aCorreoCapitan, aVideojuego, aPlataforma, aIntegrantes;
     private JButton btregistro;
     private Color preback, premenu;
-    public static String[][] Datos = new String[10][12];
+    private String[][] Datos = new String[10][12];
     private String Sadminname = Login.Sadmin;
     private int numregistro = 0, numintegrantes = 0, numPreciobase = 0, numDescuento = 0, numTotal = 0,
             numPrecioIntegrantes = 0;
@@ -232,7 +232,7 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
         lbNumRegistro = new JLabel("Numero de registro: " + (numregistro + 1));
         lbNumRegistro.setFont(new Font("Andale Mono", 1, 14));
         lbNumRegistro.setForeground(new Color(0, 0, 0));
-        lbNumRegistro.setBounds(10, 650, 200, 30);
+        lbNumRegistro.setBounds(10, 650, 250, 30);
         add(lbNumRegistro);
 
         ImageIcon imageGetIcon = new ImageIcon("images/control.png");
@@ -257,7 +257,7 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
                 JOptionPane.showMessageDialog(null, "Rellene correctamente los campos");
             } else {
 
-                if (numregistro < 10) {
+                if (numregistro <=9) {
 
                     aNombrEquipo = fieldNombreEquipo.getText().toString();
                     aNombreCapitan = fieldNombreCapitan.getText().toString();
@@ -313,12 +313,17 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
                     }
 
                     if (numDescuento != 0) {
-                        Datos[numregistro][9] = String.valueOf(numDescuento);
+                        Datos[numregistro][9] = "$ " + String.valueOf(numDescuento);
                     } else {
                         Datos[numregistro][9] = "Sin Descuento";
                     }
 
-                    Datos[numregistro][10] = String.valueOf(numTotal - numDescuento);
+                    if (numDescuento < numTotal){
+                        Datos[numregistro][10] = String.valueOf(numTotal - numDescuento);
+                    } else {
+                        Datos[numregistro][10] = String.valueOf((numTotal) + "El descuento no aplica");
+                    }
+
                     Datos[numregistro][11] = "Pendiente de pago";
                     Datos[numregistro][8] = String.valueOf(numPrecioIntegrantes);
 
@@ -332,22 +337,25 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
                     if (numregistro < Datos.length) {
                         lbNumRegistro.setText("Numero de registro: " + (numregistro + 1));
                     } else {
-                        lbNumRegistro.setText("Numero de registro: 10");
-                        JOptionPane.showMessageDialog(null, "Numero de registro lleno");
+                        lbNumRegistro.setText("Numero de registro: Completo");
                     }
 
+                    if (vinfo !=null && vinfo.isDisplayable()){
+                        vinfo.actualizarTexto();
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Numero de registro lleno");
                 }
             }
         }
 
-        if (e.getSource() == menuItemRegistros)
-
-        {
+        if (e.getSource() == menuItemRegistros) {
 
             if (vinfo != null && vinfo.isDisplayable()) {
                 vinfo.setVisible(true);
             } else {
-                vinfo = new Info();
+                vinfo = new Info(this);
                 vinfo.setBounds(0, 0, 540, 400);
                 vinfo.setResizable(false);
                 vinfo.setLocationRelativeTo(null);
@@ -428,8 +436,8 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
         }
 
         if (e.getSource() == menuItemAcerca) {
-            JOptionPane.showMessageDialog(null, "Programa creador por: Emir Mendoza" +
-                    "\n Cuenta de X: ShadeeDX");
+            JOptionPane.showMessageDialog(null, "ShadeeDX" +
+                    "\n Cuenta de X: @shadeeDX");
         }
 
         if (e.getSource() == menuItemNuevo) {
@@ -449,6 +457,8 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
             comboPlataformaDisponible.setSelectedIndex(0);
             comboIntegrantes.setSelectedIndex(0);
             iniciarBaseDatos();
+            numregistro=0;
+            lbNumRegistro.setText("Numero de registro: " + (numregistro + 1));
 
             if (vinfo != null && vinfo.isDisplayable()) {
                 vinfo.dispose();
@@ -479,6 +489,13 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
                 Datos[i][j] = "";
             }
         }
+    }
+
+    public String getDatos(int number, int number2){
+        if (number < 11 && number2 < 13) {
+            return Datos[number][number2];
+        }
+        return null;
     }
 
     public void itemStateChanged(ItemEvent e) {

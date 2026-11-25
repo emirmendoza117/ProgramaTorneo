@@ -8,8 +8,10 @@ public class Info extends JFrame implements ItemListener {
     private JScrollPane sc;
     private JTextArea textarea1;
     private JComboBox cb;
+    private Principal Principal;
 
-    public Info() {
+    public Info(Principal Principal) {
+        this.Principal = Principal;
         setLayout(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setTitle("Menu de información");
@@ -61,11 +63,18 @@ public class Info extends JFrame implements ItemListener {
         add(cb);
     }
 
-    public void itemStateChanged(ItemEvent e) {
-        String Snumber = cb.getSelectedItem().toString();
-        int number = Integer.parseInt(Snumber) - 1;
+    public void actualizarTexto(){
 
-        if (Snumber.equals("") || Principal.Datos[number][0].equals("") || Principal.Datos[number][0].isEmpty()) {
+        String Snumber=cb.getSelectedItem().toString();
+        int number=0;
+
+        if (Snumber.equals("")) {
+            number = 0;
+        } else {
+            number = Integer.parseInt(Snumber) - 1;
+        }
+
+        if (Principal.getDatos(number, 0)==null || Snumber.equals("") || Principal.getDatos(number,0).equals("")) {
             textarea1.setText(" Equipo: " +
                     "\n Capitán: " +
                     "\n Correo: " +
@@ -79,19 +88,30 @@ public class Info extends JFrame implements ItemListener {
                     "\n Total:" +
                     "\n\n Estado:");
         } else {
-            textarea1.setText(" Equipo: " + Principal.Datos[number][0] +
-                    "\n Capitán: " + Principal.Datos[number][1] +
-                    "\n Correo: " + Principal.Datos[number][2] +
-                    "\n Videojuego: " + Principal.Datos[number][3] +
-                    "\n Plataforma: " + Principal.Datos[number][4] +
-                    "\n Integrantes: " + Principal.Datos[number][5] +
-                    "\n Tipo: " + Principal.Datos[number][6] +
-                    "\n\n Precio base: $"+ Principal.Datos[number][7]+
-                    "\n Precio de Integrantes: $"+ Principal.Datos[number][8]+
-                    "\n Descuento: $" + Principal.Datos[number][9]+
-                    "\n Total: $" + Principal.Datos[number][10]+
-                    "\n\n Estado: " + Principal.Datos[number][11]);
+            textarea1.setText(" Equipo: " + Principal.getDatos(number, 0) +
+                    "\n Capitán: " + Principal.getDatos(number, 1) +
+                    "\n Correo: " + Principal.getDatos(number, 2) +
+                    "\n Videojuego: " + Principal.getDatos(number, 3) +
+                    "\n Plataforma: " + Principal.getDatos(number, 4) +
+                    "\n Integrantes: " + Principal.getDatos(number, 5) +
+                    "\n Tipo: " + Principal.getDatos(number, 6) +
+                    "\n\n Precio base: $"+ Principal.getDatos(number, 7) +
+                    "\n Precio de Integrantes: $"+ Principal.getDatos(number, 8) +
+                    "\n Descuento: " + Principal.getDatos(number, 9) +
+                    "\n Total: $" + Principal.getDatos(number, 10) +
+                    "\n\n Estado: " + Principal.getDatos(number, 11));
 
+        }
+    }
+
+    public Info(){
+        this(null);
+    }
+
+    public void itemStateChanged(ItemEvent e) {
+
+        if (e.getStateChange() == ItemEvent.SELECTED) {
+            actualizarTexto();
         }
     }
 

@@ -21,7 +21,7 @@ public class EstadoPagos extends JFrame implements ActionListener, ItemListener 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setTitle("Menú de pagos");
         setIconImage(new ImageIcon(
-            getClass().getResource("images/logo.png")
+                getClass().getResource("images/logo.png")
         ).getImage());
 
         lb1 = new JLabel("Elige # de equipo para cambiar su estado:");
@@ -94,7 +94,7 @@ public class EstadoPagos extends JFrame implements ActionListener, ItemListener 
             String nombreEquipo = datewindow.getDatos(numteam, 0);
 
             if (nombreEquipo == null || nombreEquipo.isBlank()) {
-                JOptionPane.showMessageDialog(this,"El equipo seleccionado no está registrado.");
+                JOptionPane.showMessageDialog(this, "El equipo seleccionado no está registrado.");
                 return;
             }
 
@@ -107,8 +107,8 @@ public class EstadoPagos extends JFrame implements ActionListener, ItemListener 
             }
 
             JOptionPane.showMessageDialog(
-                this,
-                "Estado de pago actualizado correctamente."
+                    this,
+                    "Estado de pago actualizado correctamente."
             );
         }
     }
@@ -116,7 +116,7 @@ public class EstadoPagos extends JFrame implements ActionListener, ItemListener 
     @Override
     public void itemStateChanged(ItemEvent e) {
 
-        if (e.getSource() != cb2 ||  e.getStateChange() != ItemEvent.SELECTED) {
+        if (e.getSource() != cb2 || e.getStateChange() != ItemEvent.SELECTED) {
             return;
         }
 

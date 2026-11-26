@@ -7,7 +7,7 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
     private JMenuBar mb;
     private JMenu menuOpciones, menuTema, menuRegistro, menuAcerca;
     private JMenuItem menuItemRegistros, menuItemVerde, menuItemAzul, menuItemBlanco, menuItemColorPre, menuItemSalir,
-            menuItemCerrarSesion, menuItemNuevo, menuItemAcerca, menuItemReiniciar,menuItemTorneo;
+            menuItemCerrarSesion, menuItemNuevo, menuItemAcerca, menuItemReiniciar, menuItemTorneo;
     private JTextField fieldNombreEquipo, fieldNombreCapitan, fieldCorreoCapitan;
     private JComboBox<String> comboVideojuego, comboPlataformaDisponible, comboIntegrantes;
     private JLabel lbEquipo, lbCapitan, lbCorreo, lbJuego, lbPlataforma, lbIntegrantes, lbtitle, lblogo, lbicon,
@@ -263,7 +263,7 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
                 JOptionPane.showMessageDialog(null, "Rellene correctamente los campos");
             } else {
 
-                if (numregistro <=9) {
+                if (numregistro <= 9) {
 
                     aNombrEquipo = fieldNombreEquipo.getText().toString();
                     aNombreCapitan = fieldNombreCapitan.getText().toString();
@@ -324,7 +324,7 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
                         Datos[numregistro][9] = "Sin Descuento";
                     }
 
-                    if (numDescuento < numTotal){
+                    if (numDescuento < numTotal) {
                         Datos[numregistro][10] = String.valueOf(numTotal - numDescuento);
                     } else {
                         Datos[numregistro][10] = String.valueOf((numTotal) + "El descuento no aplica");
@@ -346,7 +346,7 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
                         lbNumRegistro.setText("Numero de registro: Completo");
                     }
 
-                    if (vinfo !=null && vinfo.isDisplayable()){
+                    if (vinfo != null && vinfo.isDisplayable()) {
                         vinfo.actualizarTexto();
                     }
 
@@ -443,7 +443,7 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
 
         if (e.getSource() == menuItemAcerca) {
             JOptionPane.showMessageDialog(null, "Emir Mendoza" +
-                    "\n Correo: emirfernando29@gmail.com"+
+                    "\n Correo: emirfernando29@gmail.com" +
                     "\n Version: 2.0");
         }
 
@@ -464,7 +464,7 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
             comboPlataformaDisponible.setSelectedIndex(0);
             comboIntegrantes.setSelectedIndex(0);
             iniciarBaseDatos();
-            numregistro=0;
+            numregistro = 0;
             lbNumRegistro.setText("Numero de registro: " + (numregistro + 1));
 
             if (vinfo != null && vinfo.isDisplayable()) {
@@ -472,9 +472,9 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
             }
         }
 
-        if (e.getSource()==menuItemCerrarSesion) {
+        if (e.getSource() == menuItemCerrarSesion) {
             Login ventanaInicio = new Login();
-            ventanaInicio.setBounds(0,0,650,600);
+            ventanaInicio.setBounds(0, 0, 650, 600);
             ventanaInicio.setResizable(false);
             ventanaInicio.setLocationRelativeTo(null);
             ventanaInicio.setVisible(true);
@@ -485,37 +485,37 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
             dispose();
         }
 
-        if (e.getSource()==menuItemSalir) {
+        if (e.getSource() == menuItemSalir) {
             System.exit(0);
         }
 
-        if (e.getSource()==menuItemTorneo) {
-            JOptionPane.showMessageDialog(null, "Arena Masters" + 
-            "\nTorneo presencial"+
-            "\nMaximo de equipo:10"+
-            "\nPremio: $20,000"+
-            "\nOrganizador: " + Sadminname);
+        if (e.getSource() == menuItemTorneo) {
+            JOptionPane.showMessageDialog(null, "Arena Masters" +
+                    "\nTorneo presencial" +
+                    "\nMaximo de equipo:10" +
+                    "\nPremio: $20,000" +
+                    "\nOrganizador: " + Sadminname);
         }
     }
 
-    public void iniciarBaseDatos(){
-        for (int i = 0; i<Datos.length;i++){
-            for (int j = 0;j<Datos[i].length;j++){
+    public void iniciarBaseDatos() {
+        for (int i = 0; i < Datos.length; i++) {
+            for (int j = 0; j < Datos[i].length; j++) {
                 Datos[i][j] = "";
             }
         }
     }
 
-    public String getDatos(int number, int number2){
+    public String getDatos(int number, int number2) {
         if (number < 11 && number2 < 13) {
             return Datos[number][number2];
         }
         return null;
     }
 
-    public void setDatos(int number, int number2, String Svalue){
+    public void setDatos(int number, int number2, String Svalue) {
         if (number < 11 && number2 < 13) {
-            Datos[number][number2]=Svalue;
+            Datos[number][number2] = Svalue;
         }
     }
 

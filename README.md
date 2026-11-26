@@ -20,7 +20,7 @@ Programa de escritorio desarrollado en Java con Swing para registrar equipos en 
 - Cálculo automático de precio base, cargos adicionales y descuentos.
 - Consulta de todos los registros almacenados durante la sesión.
 - Cambio del estado de pago de cada equipo.
-- Temas blanco, azul, verde y predeterminado.
+- Tema blanco, azul, verde y predeterminado.
 - Información del torneo y de la aplicación.
 - Acciones para limpiar el formulario, reiniciar registros, cerrar sesión o salir.
 

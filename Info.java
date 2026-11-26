@@ -38,7 +38,7 @@ public class Info extends JFrame implements ActionListener, ItemListener {
                 "\n Integrantes: " +
                 "\n Tipo: " +
                 "\n\n Precio base:" +
-                "\n Precio de Integrantes:"+
+                "\n Precio de Integrantes:" +
                 "\n Descuento:" +
                 "\n Total:" +
                 "\n\n Estado:");
@@ -64,18 +64,18 @@ public class Info extends JFrame implements ActionListener, ItemListener {
         add(cb);
 
         button1 = new JButton("Estados Pagos");
-        button1.setBounds(10,360,150,30);
-        button1.setFont(new Font("Andale Mono",1,13));
-        button1.setBackground(new Color(255,255,255));
-        button1.setForeground(new Color(0,0,0));
+        button1.setBounds(10, 360, 150, 30);
+        button1.setFont(new Font("Andale Mono", 1, 13));
+        button1.setBackground(new Color(255, 255, 255));
+        button1.setForeground(new Color(0, 0, 0));
         button1.addActionListener(this);
         add(button1);
     }
 
-    public void actualizarTexto(){
+    public void actualizarTexto() {
 
-        String Snumber=cb.getSelectedItem().toString();
-        int number=0;
+        String Snumber = cb.getSelectedItem().toString();
+        int number = 0;
 
         if (Snumber.equals("")) {
             number = 0;
@@ -83,7 +83,7 @@ public class Info extends JFrame implements ActionListener, ItemListener {
             number = Integer.parseInt(Snumber) - 1;
         }
 
-        if (Principal.getDatos(number, 0)==null || Snumber.equals("") || Principal.getDatos(number,0).equals("")) {
+        if (Principal.getDatos(number, 0) == null || Snumber.equals("") || Principal.getDatos(number, 0).equals("")) {
             textarea1.setText(" Equipo: " +
                     "\n Capitán: " +
                     "\n Correo: " +
@@ -92,7 +92,7 @@ public class Info extends JFrame implements ActionListener, ItemListener {
                     "\n Integrantes: " +
                     "\n Tipo: " +
                     "\n\n Precio base:" +
-                    "\n Precio de Integrantes:"+
+                    "\n Precio de Integrantes:" +
                     "\n Descuento:" +
                     "\n Total:" +
                     "\n\n Estado:");
@@ -104,8 +104,8 @@ public class Info extends JFrame implements ActionListener, ItemListener {
                     "\n Plataforma: " + Principal.getDatos(number, 4) +
                     "\n Integrantes: " + Principal.getDatos(number, 5) +
                     "\n Tipo: " + Principal.getDatos(number, 6) +
-                    "\n\n Precio base: $"+ Principal.getDatos(number, 7) +
-                    "\n Precio de Integrantes: $"+ Principal.getDatos(number, 8) +
+                    "\n\n Precio base: $" + Principal.getDatos(number, 7) +
+                    "\n Precio de Integrantes: $" + Principal.getDatos(number, 8) +
                     "\n Descuento: " + Principal.getDatos(number, 9) +
                     "\n Total: $" + Principal.getDatos(number, 10) +
                     "\n\n Estado: " + Principal.getDatos(number, 11));
@@ -113,7 +113,7 @@ public class Info extends JFrame implements ActionListener, ItemListener {
         }
     }
 
-    public Info(){
+    public Info() {
         this(null);
     }
 
@@ -124,8 +124,8 @@ public class Info extends JFrame implements ActionListener, ItemListener {
         }
     }
 
-    public void actionPerformed(ActionEvent e){
-        if (e.getSource()==button1){
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == button1) {
             EstadoPagos ventanapagos = new EstadoPagos(this, Principal);
             ventanapagos.setBounds(0, 0, 540, 250);
             ventanapagos.setResizable(false);

@@ -7,7 +7,7 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
     private JMenuBar mb;
     private JMenu menuOpciones, menuTema, menuRegistro, menuAcerca;
     private JMenuItem menuItemRegistros, menuItemVerde, menuItemAzul, menuItemBlanco, menuItemColorPre, menuItemSalir,
-            menuItemCerrarSesion, menuItemNuevo, menuItemAcerca, menuItemReiniciar;
+            menuItemCerrarSesion, menuItemNuevo, menuItemAcerca, menuItemReiniciar,menuItemTorneo;
     private JTextField fieldNombreEquipo, fieldNombreCapitan, fieldCorreoCapitan;
     private JComboBox<String> comboVideojuego, comboPlataformaDisponible, comboIntegrantes;
     private JLabel lbEquipo, lbCapitan, lbCorreo, lbJuego, lbPlataforma, lbIntegrantes, lbtitle, lblogo, lbicon,
@@ -108,6 +108,12 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
         menuItemRegistros.setForeground(new Color(0, 0, 0));
         menuItemRegistros.addActionListener(this);
         menuRegistro.add(menuItemRegistros);
+
+        menuItemTorneo = new JMenuItem("Acerca del Torneo");
+        menuItemTorneo.setFont(new Font("Andale Mono", 0, 12));
+        menuItemTorneo.setForeground(new Color(0, 0, 0));
+        menuItemTorneo.addActionListener(this);
+        menuRegistro.add(menuItemTorneo);
 
         menuItemAcerca = new JMenuItem("Acerca de");
         menuItemAcerca.setFont(new Font("Andale Mono", 0, 12));
@@ -480,6 +486,14 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
 
         if (e.getSource()==menuItemSalir) {
             System.exit(0);
+        }
+
+        if (e.getSource()==menuItemTorneo) {
+            JOptionPane.showMessageDialog(null, "Arena Masters" + 
+            "\nTorneo presencial"+
+            "\nMaximo de equipo:10"+
+            "\nPremio: $20,000"+
+            "\nOrganizador: " + Sadminname);
         }
     }
 

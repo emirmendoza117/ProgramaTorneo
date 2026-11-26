@@ -56,9 +56,17 @@ public class Login extends JFrame implements ActionListener{
     }
 
     public void actionPerformed(ActionEvent e){
-        Sadmin = admin.getText().trim();
+                
         if (e.getSource()==button1){
-            if (Sadmin=="") {
+
+            Sadmin = admin.getText().trim();
+            
+            if (admin.getText().isEmpty() || admin.getText().isBlank()) {
+            JOptionPane.showMessageDialog(null, "Por favor ingrese el nombre del administrador");
+            return;
+            }
+           
+            if (Sadmin=="" || Sadmin=="null") {
                 JOptionPane.showMessageDialog(null, "Por favor ingrese el nombre del administrador");
             } else{
                 Licencia prueba = new Licencia(this);

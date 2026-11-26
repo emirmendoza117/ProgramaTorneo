@@ -229,7 +229,7 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
         lbtitle.setBounds(310, 50, 400, 60);
         add(lbtitle);
 
-        lbadmin = new JLabel("Administrador: " + Sadminname);
+        lbadmin = new JLabel("Organizador: " + Sadminname);
         lbadmin.setFont(new Font("Andale Mono", 1, 14));
         lbadmin.setForeground(new Color(0, 0, 0));
         lbadmin.setBounds(575, 650, 150, 30);

@@ -60,14 +60,14 @@ public class Login extends JFrame implements ActionListener{
         if (e.getSource()==button1){
 
             Sadmin = admin.getText().trim();
-            
+
             if (admin.getText().isEmpty() || admin.getText().isBlank()) {
-            JOptionPane.showMessageDialog(null, "Por favor ingrese el nombre del administrador");
+            JOptionPane.showMessageDialog(null, "Por favor ingrese el nombre del organizador");
             return;
             }
            
             if (Sadmin=="" || Sadmin=="null") {
-                JOptionPane.showMessageDialog(null, "Por favor ingrese el nombre del administrador");
+                JOptionPane.showMessageDialog(null, "Por favor ingrese el nombre del organizador");
             } else{
                 Licencia prueba = new Licencia(this);
                 prueba.setBounds(0,0,650,400);

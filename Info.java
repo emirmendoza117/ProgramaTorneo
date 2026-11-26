@@ -2,13 +2,14 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class Info extends JFrame implements ItemListener {
+public class Info extends JFrame implements ActionListener, ItemListener {
 
     private JLabel lb1, lb2;
     private JScrollPane sc;
     private JTextArea textarea1;
     private JComboBox cb;
     private Principal Principal;
+    private JButton button1;
 
     public Info(Principal Principal) {
         this.Principal = Principal;
@@ -61,6 +62,14 @@ public class Info extends JFrame implements ItemListener {
         }
         cb.addItemListener(this);
         add(cb);
+
+        button1 = new JButton("Estados Pagos");
+        button1.setBounds(10,360,150,30);
+        button1.setFont(new Font("Andale Mono",1,13));
+        button1.setBackground(new Color(255,255,255));
+        button1.setForeground(new Color(0,0,0));
+        button1.addActionListener(this);
+        add(button1);
     }
 
     public void actualizarTexto(){
@@ -115,9 +124,19 @@ public class Info extends JFrame implements ItemListener {
         }
     }
 
+    public void actionPerformed(ActionEvent e){
+        if (e.getSource()==button1){
+            EstadoPagos ventanapagos = new EstadoPagos(this, Principal);
+            ventanapagos.setBounds(0, 0, 540, 250);
+            ventanapagos.setResizable(false);
+            ventanapagos.setLocationRelativeTo(null);
+            ventanapagos.setVisible(true);
+        }
+    }
+
     public static void main(String[] args) {
         Info prueba = new Info();
-        prueba.setBounds(0, 0, 540, 400);
+        prueba.setBounds(0, 0, 540, 450);
         prueba.setResizable(false);
         prueba.setLocationRelativeTo(null);
         prueba.setVisible(true);

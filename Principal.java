@@ -356,7 +356,7 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
                 vinfo.setVisible(true);
             } else {
                 vinfo = new Info(this);
-                vinfo.setBounds(0, 0, 540, 400);
+                vinfo.setBounds(0, 0, 540, 450);
                 vinfo.setResizable(false);
                 vinfo.setLocationRelativeTo(null);
                 vinfo.setVisible(true);
@@ -496,6 +496,12 @@ public class Principal extends JFrame implements ActionListener, ItemListener {
             return Datos[number][number2];
         }
         return null;
+    }
+
+    public void setDatos(int number, int number2, String Svalue){
+        if (number < 11 && number2 < 13) {
+            Datos[number][number2]=Svalue;
+        }
     }
 
     public void itemStateChanged(ItemEvent e) {

@@ -99,15 +99,6 @@ Si Java está configurado correctamente en las variables de entorno:
 java -jar Programa.jar
 ```
 
-También puedes crear un nuevo JAR con el siguiente manifiesto, que debe incluir `Main-Class: Login`:
-
-```text
-Manifest-Version: 2.0
-Created-By: Emir Mendoza
-Main-Class: Login
-X-COMMENT: Proyecto Mini Interfaz
-```
-
 ## Almacenamiento
 
 Los registros se mantienen temporalmente en la matriz `Principal.Datos` mientras la aplicación está abierta.
